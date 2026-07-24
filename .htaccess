@@ -1,0 +1,13 @@
+Options -Indexes
+RewriteEngine On
+
+# Abaikan file dan folder yang benar-benar tersedia.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# URL panel administrator.
+RewriteRule ^Admin/?$ Admin/index.php [L,QSA,NC]
+
+# URL publik setiap pengguna, misalnya /cecep_suwanda.
+RewriteRule ^([a-zA-Z0-9_-]+)/?$ index.php?username=$1 [L,QSA]
